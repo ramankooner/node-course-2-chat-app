@@ -16,12 +16,13 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
   // we are creating the event
-  // CLIENT
-  socket.emit('newMessage', {
-    from: 'Mike',
-    text: 'See you soon!',
-    createdAt: 12
-  });
+  // sent from server to client
+  // socket.emit('newMessage', {
+  //   from: 'Mike',
+  //   text: 'See you soon!',
+  //   createdAt: 12
+  // });
+
   // socket.emit('newEmail', {
   //   from: 'raman@example.com',
   //   text: 'Hello!',
@@ -30,6 +31,11 @@ io.on('connection', (socket) => {
 
   socket.on('createMessage', (message) => {
     console.log('createMessage', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
   // socket.on('createEmail', (newEmail) => {
   //   console.log('createEmail', newEmail);

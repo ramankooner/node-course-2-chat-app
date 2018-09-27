@@ -3,11 +3,11 @@ var socket = io();
 socket.on('connect', function () {
   console.log('Connected to server');
 
-  // SERVER
-  socket.emit('createMessage', {
-    from: 'Raman',
-    text: 'hi!!!'
-  });
+  // sent from client to server
+  // socket.emit('createMessage', {
+  //   from: 'Raman',
+  //   text: 'hi!!!'
+  // });
   // socket.emit('createEmail', {
   //   to: 'ram@example.com',
   //   text: 'Hello this is Raman'
