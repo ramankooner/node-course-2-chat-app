@@ -35,11 +35,12 @@ io.on('connection', (socket) => {
   //   createAt: 123
   // });
 
-  socket.on('createMessage', (message) => {
+  // we use the callback here as an acknowledgement
+  // acknowledgements will send data back to the client like a success message
+  socket.on('createMessage', (message, callback) => {
     console.log('createMessage', message);
-
     io.emit('newMessage', generateMessage(message.from, message.text));
-
+    callback('This is from the server.');
     // sends event to everyone except this socket
     // socket.broadcast.emit('newMessage', {
     //   from: message.from,
